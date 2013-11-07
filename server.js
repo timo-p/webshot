@@ -22,12 +22,22 @@ function writeFileToResponse(file, response, callback){
 function cleanupTmp(file){
   fs.unlink(file, function(err){
     if(err) console.error(err);
-  });  
+  });
 }
 
-function screenGrab(url, callback){
+function screenGrab(url, options, callback){
   var original = createTmpPng();
-  webshot(url, original, function(err){
+
+  var window_height = 'window';
+  if (options.full == 'true') {
+    window_height = 'all';
+  }
+  var options = { shotSize: {
+     width: 'window',
+     height: window_height
+  }};
+
+  webshot(url, original, options, function(err){
     callback(original, function(){
       cleanupTmp(original);
     });
@@ -49,7 +59,7 @@ function convert(original, options, callback){
           cleanupTmp(converted);
         });
       }
-    );  
+    );
   }
 }
 
@@ -70,7 +80,11 @@ app.router.get('/', function(request, response) {
 
   var url = self.req.query.url || "https://github.com/opsb/node-webshot-server";
 
-  screenGrab(url, function(original, cleanupScreenGrab){
+  var options = {
+    'full': self.req.query.full,
+  }
+
+  screenGrab(url, options, function(original, cleanupScreenGrab){
     convert(original, self.req.query, function(converted, cleanupConversion){
       writeFileToResponse(converted, self.res, function(){
         cleanupScreenGrab();
