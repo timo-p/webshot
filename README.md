@@ -21,3 +21,4 @@ Node based server for taking webshots using [node-webshot](https://github.com/br
     http://localhost:5000?url=google.com&width=500
     http://localhost:5000?url=google.com&height=300
     http://localhost:5000?url=google.com&width=200&height=400
+    http://localhost:5000?url=google.com&width=200&full=true # Full page
