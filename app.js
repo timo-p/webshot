@@ -27,7 +27,13 @@ if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
+app.get('/', function(req, res) {
+  if (req.query.url) {
+    res.redirect('/api/generate?url=' + req.query.url);
+  } else {
+    return routes.index(req, res);
+  }
+});
 app.get('/api/generate', apiRoutes.generate);
 
 http.createServer(app).listen(app.get('port'), function(){
