@@ -35,6 +35,7 @@ var screengrab = function(url, options, callback) {
     var tempPath = temp.path({suffix: '.png'});
 
     var webshotOptions = {
+        'renderDelay': 2000,
         'windowSize': {
             'width': options.width,
             'height': options.height
