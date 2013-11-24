@@ -6,6 +6,7 @@ $(document).ready(function() {
         var url = $('#url').val();
         var width = $('#width').val();
         var height = $('#height').val();
+        var delay = $('#delay').val();
         var full = $('#full').is(':checked');
 
         // Validate if "something" was provided as a URL
@@ -28,7 +29,7 @@ $(document).ready(function() {
 
         $('#url').parent().removeClass('error');
 
-        var src = '/api/generate?url=' + url + '&width=' + width + '&height=' + height + '&full=' + full;
+        var src = '/api/generate?url=' + url + '&width=' + width + '&height=' + height + '&delay=' + delay + '&full=' + full;
 
         $('.js-generate-btn').html('<i class="fa fa-spinner fa-spin"></i> Generating - this should only take a moment ...');
 
