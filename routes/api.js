@@ -23,6 +23,7 @@ exports.generate = function(req, res) {
     var options = {
         'width': req.param('width'),
         'height': req.param('height'),
+        'delay': req.param('delay'),
         'full': (req.param('full') === 'true')
     };
 
