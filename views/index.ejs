@@ -67,40 +67,71 @@
           <br />
           <small>Free, automated generation of live screenshots of public websites</small>
         </h1>
-        <form action="/api/generate" class="form js-generate" style="margin-top: 30px;">
-          <div class="control-group">
-            <label for="url" class="control-label">URL</label>
-            <div class="controls">
-              <input type="text" name="url" id="url"
-                class="input-xxlarge"
-                placeholder="http://okfn.org/"
-                type="url"
-                required=""
-                />
-            </div>
-          </div>
-            <fieldset>
-                <legend>Optional parameters</legend>
-                <label for="width">Width</label>
-                <input type="number" name="width" id="width" class="input-small" value="1024" min="100" max="2560" />
-
-                <label for="height">Height</label>
-                <input type="number" name="height" id="height" class="input-small" value="768" min="100" max="" />
-
-                <label for="delay">Delay (in ms)</label>
-                <input type="number" name="delay" id="delay" class="input-small" value="0" min="0" max="10000" step="100" />
-
-                <label for="full">
-                  <input type="checkbox" name="full" id="full" />
-                  Grab whole page (not just visible page)
-                </label>
-            </fieldset>
-            <div class="control-group" style="margin-top: 30px;">
-              <div class="controls">
-                <button type="submit" class="btn btn-primary btn-large js-generate-btn">Generate screenshot</button>
+      </div>
+      <div>
+        <div class="row">
+          <div class="span5">
+            <h2>Try it out</h2>
+            <form action="/api/generate" class="form js-generate" style="margin-top: 30px;">
+              <div class="control-group">
+                <label for="url" class="control-label">URL</label>
+                <div class="controls">
+                  <input type="text" name="url" id="url"
+                    class="input-xlarge"
+                    placeholder="http://okfn.org/"
+                    type="url"
+                    required=""
+                    />
+                </div>
               </div>
-            </div>
-        </form>
+                <fieldset>
+                    <legend>Optional parameters</legend>
+                    <label for="width">Width</label>
+                    <input type="number" name="width" id="width" class="input-small" value="1024" min="100" max="2560" />
+
+                    <label for="height">Height</label>
+                    <input type="number" name="height" id="height" class="input-small" value="768" min="100" max="" />
+
+                    <label for="delay">Delay (in ms)</label>
+                    <input type="number" name="delay" id="delay" class="input-small" value="0" min="0" max="10000" step="100" />
+
+                    <label for="full">
+                      <input type="checkbox" name="full" id="full" />
+                      Grab whole page (not just visible page)
+                    </label>
+                </fieldset>
+                <div class="control-group" style="margin-top: 30px;">
+                  <div class="controls">
+                    <button type="submit" class="btn btn-primary btn-large js-generate-btn">Generate screenshot</button>
+                  </div>
+                </div>
+            </form>
+          </div>
+          <div class="span5">
+            <h2>Documentation</h2>
+            <dl>
+              <dt>HTTP Method</dt>
+              <dd><code>GET</code></dd>
+              <dt>URL</dt>
+              <dd><code>/api/generate</code></dd>
+              <dt>Parameters</dt>
+              <dd>
+                <dl>
+                  <dt><code>url</code></dt>
+                  <dd>Required, must include the protocol</dd>
+                  <dt><code>width</code></dt>
+                  <dd>Not required, defaults to 1024</dd>
+                  <dt><code>height</code></dt>
+                  <dd>Not required, defaults to 768</dd>
+                  <dt><code>delay</code></dt>
+                  <dd>Not required, specified in ms, defaults to 0ms</dd>
+                  <dt><code>full</code></dt>
+                  <dd>Not required, specifies whether the full page should be captured, only true/false is allowed, defaults to false</dd>
+                </dl>
+              </dd>
+            </dl>
+          </div>
+        </div>
       </div>
      
     <div id="results" style="display:none;">
