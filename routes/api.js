@@ -24,6 +24,7 @@ exports.generate = function(req, res) {
         'width': req.param('width'),
         'height': req.param('height'),
         'delay': req.param('delay'),
+        'userAgent': req.param('userAgent'),
         'full': (req.param('full') === 'true')
     };
 

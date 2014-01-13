@@ -95,6 +95,9 @@
                     <label for="delay">Delay (in ms)</label>
                     <input type="number" name="delay" id="delay" class="input-small" value="0" min="0" max="10000" step="100" />
 
+                    <label for="userAgent">User agent</label>
+                    <input type="text" name="userAgent" id="userAgent" class="input-xlarge" value=""  />
+
                     <label for="full">
                       <input type="checkbox" name="full" id="full" />
                       Grab whole page (not just visible page)
@@ -125,6 +128,8 @@
                   <dd>Not required, defaults to 768</dd>
                   <dt><code>delay</code></dt>
                   <dd>Not required, specified in ms, defaults to 0ms</dd>
+                  <dt><code>userAgent</code></dt>
+                  <dd>Not required, specifies the user agent</dd>
                   <dt><code>full</code></dt>
                   <dd>Not required, specifies whether the full page should be captured, only true/false is allowed, defaults to false</dd>
                 </dl>

@@ -10,6 +10,7 @@ var webshot = require('webshot');
  * @param  {Number}     [options.width]     The desired width (in pixels) for the generated image, default: 1024
  * @param  {Number}     [options.height]    The desired height (in pixels) for the generated image, default 768
  * @param  {Number}     [options.delay]     The delay (in milliseconds) before the screenshot, default 0, maximum 10000
+ * @param  {String}     [options.userAgent] An optional user agent, defaults to an empty string
  * @param  {Boolean}    [options.full]      If specified, the entire webpage will be screenshotted and the `options.height` property will be ignored
  * @param  {Function}   callback            A standard callback function
  * @param  {Object}     callback.err        An error object (if any)
@@ -20,6 +21,7 @@ var generate = module.exports.generate = function(url, options, callback) {
     options.width = options.width || 1024;
     options.height = options.height || 768;
     options.delay = options.delay || 0;
+    options.userAgent = options.userAgent || '';
 
     if (options.delay > 10000) {
         options.delay = 10000;
@@ -32,6 +34,7 @@ var generate = module.exports.generate = function(url, options, callback) {
  * Take a screenshot of url
  *
  * @param  {String}     url             The URL for which to generate a PNG image
+ * @param  {Object}     options         A set of options that manipulate the page
  * @param  {Function}   callback        A standard callback function
  * @param  {Object}     callback.err    An error object (if any)
  * @param  {String}     callback.path   The path on disk where the image is stored
@@ -50,6 +53,7 @@ var screengrab = function(url, options, callback) {
             'width': 'window',
             'height': (options.full === true) ? 'all' : 'window'
         },
+        'userAgent': options.userAgent,
         'phantomConfig': {
             'ignore-ssl-errors': true,
             'ssl-protocol': 'any'
