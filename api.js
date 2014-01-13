@@ -49,6 +49,10 @@ var screengrab = function(url, options, callback) {
         'shotSize': {
             'width': 'window',
             'height': (options.full === true) ? 'all' : 'window'
+        },
+        'phantomConfig': {
+            'ignore-ssl-errors': true,
+            'ssl-protocol': 'any'
         }
     };
 
