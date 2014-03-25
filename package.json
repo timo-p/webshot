@@ -10,7 +10,8 @@
         "webshot": "~0.5.1",
         "express": "3.4.3",
         "temp": "0.6.0",
-        "ejs": "*"
+        "ejs": "*",
+		  "md5": "*"
     },
     "devDependencies": {},
     "scripts": {
