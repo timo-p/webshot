@@ -1,6 +1,7 @@
 var fs = require('fs');
 
 var md5 = require('md5');
+var moment = require('moment');
 var Url = require('url');
 var WebshotAPI = require('../api');
 
@@ -31,11 +32,14 @@ exports.generate = function(req, res) {
     imageName += '.png';
 
     var tmpName = '/tmp/'+md5.digest_s(url)+'.png';
-    if (fs.existsSync(tmpName))
-    {
-      console.log('Cache hit. url: '+url+', tmpFile: '+tmpName);
-      return res.download(tmpName, imageName);
-    }
+    try {
+      var stats = fs.statSync(tmpName);
+      if (stats.mtime.getTime() > moment().subtract('week', 1).toDate().getTime())
+      {
+        console.log('Cache hit. url: '+url+', tmpFile: '+tmpName+', mtime: '+stats.mtime);
+        return res.download(tmpName, imageName);
+      }
+    } catch(e) {}
 
     var options = {
         'width': req.param('width'),
