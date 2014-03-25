@@ -1,6 +1,7 @@
 var fs = require('fs');
 var temp = require('temp');
 var webshot = require('webshot');
+var md5 = require('md5');
 
 /**
  * Generates a PNG image for a URL
@@ -22,6 +23,7 @@ var generate = module.exports.generate = function(url, options, callback) {
     options.height = options.height || 768;
     options.delay = options.delay || 0;
     options.userAgent = options.userAgent || '';
+    options.tmpFile = options.tmpFile || '/tmp/'+md5(url).'.png';
 
     if (options.delay > 10000) {
         options.delay = 10000;
@@ -41,8 +43,6 @@ var generate = module.exports.generate = function(url, options, callback) {
  * @api private
  */
 var screengrab = function(url, options, callback) {
-    var tempPath = temp.path({suffix: '.png'});
-
     var webshotOptions = {
         'renderDelay': options.delay,
         'windowSize': {
@@ -60,11 +60,11 @@ var screengrab = function(url, options, callback) {
         }
     };
 
-    webshot(url, tempPath, webshotOptions, function(err) {
+    webshot(url, options.tmpFile, webshotOptions, function(err) {
         if (err) {
             return callback({'code': 500, 'msg': 'Unable to take a screenshot'});
         }
 
-        return callback(null, tempPath);
+        return callback(null, options.tmpFile);
     });
 };
