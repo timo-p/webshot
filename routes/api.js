@@ -19,7 +19,8 @@ exports.generate = function(req, res) {
     if (!parsedUrl.hostname) {
         return res.send(400, 'Invalid url, missing hostname');
     }
-
+	 console.log('here');
+console.log(parsedUrl);
     var options = {
         'width': req.param('width'),
         'height': req.param('height'),
