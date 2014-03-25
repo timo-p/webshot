@@ -23,7 +23,7 @@ var generate = module.exports.generate = function(url, options, callback) {
     options.height = options.height || 768;
     options.delay = options.delay || 0;
     options.userAgent = options.userAgent || '';
-    options.tmpFile = options.tmpFile || '/tmp/'+md5(url)+'.png';
+    options.tmpFile = options.tmpFile || '/tmp/'+md5.digest_s(url)+'.png';
 
     if (options.delay > 10000) {
         options.delay = 10000;

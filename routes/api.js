@@ -30,9 +30,12 @@ exports.generate = function(req, res) {
     }
     imageName += '.png';
 
-    var tmpName = '/tmp/'+md5(url)+'.png';
-    if (fs.exists(tmpName))
+    var tmpName = '/tmp/'+md5.digest_s(url)+'.png';
+    if (fs.existsSync(tmpName))
+    {
+      console.log('Cache hit. url: '+url+', tmpFile: '+tmpName);
       return res.download(tmpName, imageName);
+    }
 
     var options = {
         'width': req.param('width'),
