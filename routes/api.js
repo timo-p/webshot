@@ -30,7 +30,7 @@ exports.generate = function(req, res) {
     }
     imageName += '.png';
 
-    var tmpName = '/tmp/'+md5(url).'.png';
+    var tmpName = '/tmp/'+md5(url)+'.png';
     if (fs.exists(tmpName))
       return res.download(tmpName, imageName);
 
