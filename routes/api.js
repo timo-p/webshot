@@ -31,7 +31,7 @@ exports.generate = function(req, res) {
     }
     imageName += '.png';
 
-    var tmpName = '/tmp/'+md5.digest_s(url)+'.png';
+    var tmpName = '/tmp/'+md5(url)+'.png';
     try {
       var stats = fs.statSync(tmpName);
       if (stats.mtime.getTime() > moment().subtract('week', 1).toDate().getTime())
